@@ -1,5 +1,5 @@
-// const axios = require('axios');
-// var Spotify = require('node-spotify-api');
+const axios = require('axios');
+const Spotify = require('node-spotify-api');
 
 
 // require("dotenv").config();
@@ -9,7 +9,7 @@
 const search = process.argv[2];
 console.log(process.argv)
 // switch 
-omdb()
+tm()
 
 // omdb key = e5d832e9
 // spotify client id = f5aa6705a3e74aaf9ab23e8003fda31c
@@ -87,12 +87,17 @@ function spotify(){
     //   });
 }
 
+
 function tm(){
-    var queryUrl = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=e5d832e9";
+    const tmKey="&apikey=rrFQUi7azSu6BIs8pNUwk9tDZHSTv8YY"
+    var queryUrl = "https://app.ticketmaster.com/discovery/v2/events.json?size=1&keyword=" + search + tmKey;
+    console.log(queryUrl)
     axios.get(queryUrl).then(
         function (response){
             console.log(response)
-            console.log("Release Year: " + response.data.Year);
+            console.log("Event Name: " + response._embedded.events[0].name);
+            console.log("Start Date: " + response._embedded.events[0].dates.start.localTime)
+            console.log("Venue: " + response._embedded.events[0]._embedded.venues[0].name)
         }
     )
 }
