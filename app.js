@@ -3,32 +3,36 @@ const axios = require('axios');
 var Spotify = require('node-spotify-api');
 const keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
-// var spotify = new Spotify({ 
-//     id: "f5aa6705a3e74aaf9ab23e8003fda31c",
-//     secret: "bd55104f9a8a4859ba58604d69d0a326"});
-const search = process.argv[2];
 const inquirer = require('inquirer');
 
 
 inquirer
   .prompt([
     {
-        type: "input",
+        type: "list",
         message: "Would you like to search for a concert, movie, or event?",
+        choices: ["Music", "Movie", "Event"],
+        name: "type"
+      },
+    {
+        type: "search",
+        message: "What exactly are you searching for?",
         name: "search"
-      }
+    }
   ])
-  .then(answers => {
-    // Use user feedback for... whatever!!
+  .then(function (response) {
+      if (response.type === "Movie"){
+        omdb(response.search)
+      } else if (response.type === "Event"){
+        tm(response.search)
+      } else musicApi(response.search)
+    //   console.log(response.type)
+    //   console.log(response.search)
   });
 
-console.log(process.argv)
-// switch 
-musicApi()
 
-// omdb key = e5d832e9
-// spotify client id = f5aa6705a3e74aaf9ab23e8003fda31c
-// tm key = rrFQUi7azSu6BIs8pNUwk9tDZHSTv8YY
+// musicApi()
+
 // https://www.npmjs.com/package/node-spotify-api
 
 // search requirements: 
@@ -70,49 +74,27 @@ musicApi()
 
     // * Edit the text in random.txt to test out the feature for search-movies and search-concerts.
 
-function omdb(){
+function omdb(search){
     var queryUrl = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=e5d832e9";
     axios.get(queryUrl).then(
         function (response){
-            console.log(response)
             console.log("Release Year: " + response.data.Year);
         }
     )
 }
 
-function musicApi(){
-    spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+function musicApi(search){
+    spotify.search({ type: 'track', query: search, limit: 1 }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
         }
        
       console.log(data); 
       });
-
-
-    // var queryUrl = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=e5d832e9";
-    // axios.get(queryUrl).then(
-    //     function (response){
-    //         console.log(response)
-    //         console.log("Release Year: " + response.data.Year);
-    //     }
-    // )
-    // var spotify = new Spotify({
-    //     id: <your spotify client id>,
-    //     secret: <your spotify client secret>
-    //   });
-       
-    //   spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-    //     if (err) {
-    //       return console.log('Error occurred: ' + err);
-    //     }
-       
-    //   console.log(data); 
-    //   });
 }
 
 
-function tm(){
+function tm(search){
     const tmKey="&apikey=rrFQUi7azSu6BIs8pNUwk9tDZHSTv8YY"
     var queryUrl = "https://app.ticketmaster.com/discovery/v2/events.json?size=1&keyword=" + search + tmKey;
     console.log(queryUrl)
