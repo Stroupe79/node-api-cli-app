@@ -52,7 +52,7 @@ The app will return data that looks like below:
 
 Music:
 
-![Music Search] (./music.gif)
+![Music Search] (music.gif?raw=true)
 
 Movie:
 
