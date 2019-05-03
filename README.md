@@ -51,13 +51,16 @@ From the CLI, in the folder containing the app.js file, simply run the following
 The app will return data that looks like below:
 
 Music:
-![Music Search] (.\music.gif)
+
+![Music Search] (./music.gif)
 
 Movie:
-![Movie Search] (.\movie.gif)
+
+![Movie Search] (./movie.gif)
 
 Event:
-![Events Search] (.\event.gif)
+
+![Events Search] (./event.gif)
 
 
 
