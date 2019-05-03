@@ -1,3 +1,4 @@
+require("dotenv").config();
 const axios = require('axios');
 var Spotify = require('node-spotify-api');
 const keys = require("./keys.js");
@@ -21,7 +22,6 @@ inquirer
     // Use user feedback for... whatever!!
   });
 
-require("dotenv").config();
 console.log(process.argv)
 // switch 
 musicApi()
