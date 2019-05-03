@@ -1,15 +1,27 @@
 const axios = require('axios');
 const Spotify = require('node-spotify-api');
-
-
-// require("dotenv").config();
-// const keys = require("./keys.js");
-// const spotify = new Spotify(keys.spotify);
-
+const keys = require("./keys.js");
+const spotify = new Spotify(keys.spotify);
 const search = process.argv[2];
+const inquirer = require('inquirer');
+
+
+inquirer
+  .prompt([
+    {
+        type: "input",
+        message: "Would you like to search for a concert, movie, or event?",
+        name: "search"
+      }
+  ])
+  .then(answers => {
+    // Use user feedback for... whatever!!
+  });
+
+require("dotenv").config();
 console.log(process.argv)
 // switch 
-tm()
+musicApi()
 
 // omdb key = e5d832e9
 // spotify client id = f5aa6705a3e74aaf9ab23e8003fda31c
@@ -65,14 +77,17 @@ function omdb(){
     )
 }
 
-function spotify(){
-    var queryUrl = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=e5d832e9";
-    axios.get(queryUrl).then(
-        function (response){
-            console.log(response)
-            console.log("Release Year: " + response.data.Year);
-        }
-    )
+function musicApi(){
+    console.log(spotify)
+
+
+    // var queryUrl = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=e5d832e9";
+    // axios.get(queryUrl).then(
+    //     function (response){
+    //         console.log(response)
+    //         console.log("Release Year: " + response.data.Year);
+    //     }
+    // )
     // var spotify = new Spotify({
     //     id: <your spotify client id>,
     //     secret: <your spotify client secret>
