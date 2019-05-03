@@ -1,7 +1,10 @@
 const axios = require('axios');
-const Spotify = require('node-spotify-api');
+var Spotify = require('node-spotify-api');
 const keys = require("./keys.js");
-const spotify = new Spotify(keys.spotify);
+var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify({ 
+//     id: "f5aa6705a3e74aaf9ab23e8003fda31c",
+//     secret: "bd55104f9a8a4859ba58604d69d0a326"});
 const search = process.argv[2];
 const inquirer = require('inquirer');
 
@@ -78,7 +81,13 @@ function omdb(){
 }
 
 function musicApi(){
-    console.log(spotify)
+    spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+       
+      console.log(data); 
+      });
 
 
     // var queryUrl = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=e5d832e9";
