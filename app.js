@@ -26,53 +26,8 @@ inquirer
       } else if (response.type === "Event"){
         tm(response.search)
       } else musicApi(response.search)
-    //   console.log(response.type)
-    //   console.log(response.search)
   });
 
-
-// musicApi()
-
-// https://www.npmjs.com/package/node-spotify-api
-
-// search requirements: 
-// * `search-concerts`
-    //      * Name of the venue
-
-    //  * Venue location
-
-    //  * Date of the Event (use date-fns to format this as "MM/DD/YYYY")
-
-
-// * `search-songs`
-    // * Artist(s)
-
-    // * The song's name
-
-    // * A preview link of the song from Spotify
-
-    // * The album that the song is from
-
-    // * If no song is provided then your program will default to "The Sign" by Ace of Base.
-
-// * `search-movies`
-    //  * Title of the movie.
-    // * Year the movie came out.
-    // * IMDB Rating of the movie.
-    // * Rotten Tomatoes Rating of the movie.
-    // * Country where the movie was produced.
-    // * Language of the movie.
-    // * Plot of the movie.
-    // * Actors in the movie.
-    // * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
-    //  * If you haven't watched "Mr. Nobody," then you should: <http://www.imdb.com/title/tt0485947/>
-
-// * `feeling-lucky`
-    // * Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
-
-    // * It should run `search-songs` for "I Want it That Way," as follows the text in `random.txt`.
-
-    // * Edit the text in random.txt to test out the feature for search-movies and search-concerts.
 
 function omdb(search){
     var queryUrl = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=e5d832e9&tomatoes=true";
