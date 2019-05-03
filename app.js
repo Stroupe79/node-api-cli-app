@@ -69,7 +69,7 @@ function tm(search){
             console.log("Event Name: " + response.data._embedded.events[0].name);
             console.log("Venue: " + response.data._embedded.events[0]._embedded.venues[0].name)
             console.log("Venue City: " + response.data._embedded.events[0]._embedded.venues[0].city.name)
-            console.log("Start Date: " + response.data._embedded.events[0].dates.start.localTime)
+            console.log("Start Time: " + response.data._embedded.events[0].dates.start.localTime)
         }
     )
 }
