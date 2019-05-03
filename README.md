@@ -52,7 +52,7 @@ The app will return data that looks like below:
 
 Music:
 
-![Music Search](https://github.com/Stroupe79/node-api-cli-app/blob/master/movie.gif)
+![Music Search](music.gif)
 
 Movie:
 
